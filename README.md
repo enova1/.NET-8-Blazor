@@ -12,6 +12,7 @@ The sample app’s purpose (in a working version) would be to:
 
 * Display a list of baseball players and their statistics
 * Allow adding and editing players through a reusable modal
+* Display a list of employees
 * Use dependency injection and service abstractions for data access
 * Support swapping between **in-memory** and **API-based** data sources
 
@@ -22,32 +23,46 @@ Even without the code, this folder structure illustrates **best practices for se
 ## 🗂 Project Structure
 
 ```
-/BlazorWorks
+BlazorApp1
 │
-├── /wwwroot                          # Static files (CSS, JS, images, favicon, etc.)
-│   ├── css/
-│   ├── js/
-│   └── favicon.ico
+├── wwwroot/                          # Static files (CSS, JS, images, favicon)
 │
-├── /Pages                            # Routable Blazor component pages
-│   ├── PlayerStats.razor             # Displays player list and stats
+├── Layout/                           # App layout components
+│   ├── MainLayout.razor
+│   └── NavMenu.razor
 │
-├── /Shared                           # Shared UI components
-│   ├── PlayerModal.razor             # Modal for adding/editing players
-│   ├── MainLayout.razor              # Layout with shared header/footer/side nav
-│   └── NavMenu.razor                 # Navigation menu
+├── Models/                           # Data models
+│   ├── EmployeeAddresses.cs
+│   ├── EmployeePhones.cs
+│   ├── Employees.cs
+│   └── Player.cs
 │
-├── /Models                           # Data models (POCOs with annotations)
-│   ├── Player.cs                     # Player entity model
+├── Pages/                            # Routable pages
+│   ├── Employees/                    # Employee Manager example
+│   │   ├── Create.razor
+│   │   ├── Edit.razor
+│   │   └── Index.razor
+│   ├── PlayerStats/                  # Player Stats example
+│   ├── Todo/                         # Additional example
+│   ├── About.razor
+│   ├── Examples.razor
+│   └── Home.razor
 │
-├── /Services                         # Business logic and data services
-│   ├── IStatsService.cs              # Interface for stats data operations
-│   ├── StatsService.cs               # In-memory service (demo purposes)
-│   ├── PlayerApiService.cs           # API service for real HTTP data
+├── Services/                         # Business logic & data services
+│   ├── AuthorizedHttpClientService.cs
+│   ├── EmployeeService.cs
+│   ├── IStatsService.cs
+│   ├── JwtStorageService.cs
+│   ├── MockStatsService.cs
+│   └── PlayerApiService.cs
 │
-├── App.razor                         # Root component with router and layout
-├── Program.cs                        # App entry point, DI setup
-├── BlazorWorks.csproj                # Project configuration
+├── Shared/                           # Shared UI components
+│   └── PlayerModal.razor
+│
+├── App.razor                         # Root component
+├── Program.cs                        # App startup & DI config
+└── .gitignore
+
 ```
 
 ---
